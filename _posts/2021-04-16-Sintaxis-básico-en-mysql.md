@@ -16,7 +16,7 @@ tags:
     - Mysql
 ---
 
-Antes de comenzar primero debemos fijarnos de que el servicio mysql esté activos.
+Antes de comenzar primero debemos fijarnos de que el servicio mysql esté activo.
 #### Para sistemas Linux basados en debian:
 ```bash
 > service mysql status | grep "Active"
