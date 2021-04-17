@@ -1,3 +1,21 @@
+---
+layout: single
+title:  Sintáxis básico en mysql
+excerpt: "En este post se muestra los comandos mas simples y mas usados en este gestor de datos"
+date: 2021-04-16
+classes: wide
+header:
+    teaser: /assets/images/que-es-un-socket-y-como-funciona/portada.png
+    teaser_home_page: true
+categories:
+    - Explicaciones
+tags:
+    - Tutoriales
+    - Linux
+    - Bash
+    - Mysql
+---
+
 Antes de comenzar primero debemos fijarnos de que el servicio mysql esté activos.
 #### Para sistemas Linux basados en debian:
 ```
