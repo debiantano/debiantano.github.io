@@ -16,13 +16,13 @@ minimal_mistakes_skin    : "custom" # "air", "aqua", "contrast", "dark", "dirt",
 
 # Site Settings
 locale                   : "es-ES"
-title                    : "r4kso | Blog de ciberseguridad"
+title                    : "debiantano | Blog de ciberseguridad"
 title_separator          : "-"
-name                     : "r4kso"
-description              : "Blog personal sobre ciberseguridad y otros"
+name                     : "debiantano"
+description              : "Blog en seguridad ofensiva"
 url                      : "https://r4kso.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "r4kso/r4kso.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "debiantano/debiantano.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 logo                     : "/assets/images/masthead.png"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 breadcrumbs              : true # true, false (default)
@@ -101,7 +101,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "r4kso"
+  name             : "debiantano"
   avatar           : "/assets/images/profilepic.jpg"
   bio              : "IT degree student / Interested in cybersecurity / Pentester wannabe"
   uri              :
