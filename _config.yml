@@ -20,7 +20,7 @@ title                    : "debiantano | Blog de ciberseguridad"
 title_separator          : "-"
 name                     : "debiantano"
 description              : "Blog en seguridad ofensiva"
-url                      : "https://r4kso.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://debiantano.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "debiantano/debiantano.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 logo                     : "/assets/images/masthead.png"
@@ -112,7 +112,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "r4kso"
+  github           : "debiantano"
   gitlab           :
   google_plus      :
   keybase          :
