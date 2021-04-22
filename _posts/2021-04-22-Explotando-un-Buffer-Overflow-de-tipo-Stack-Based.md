@@ -14,13 +14,14 @@ tags:
     - Buffer Overflow
 ---
 
+<p align="center">
+<img src="/assets/images/boflinux/portada.png" width="50%">
+</p>
+
 - [Antecedentes](#Antecedente)
 - [Creacion del script en C vulnerable](#creando-script-en-c)
 - [Calculando el offset](calculando-el-offset)
 
-<p align="center">
-<img src="/assets/images/boflinux/portada.png" width="50%">
-</p>
 
 ## Antecedentes:
 Antes de comenzar, debo decir que todo el procedimiento del laboratorio se llevará a cabo en una maquina virtual  especificamente en un sistema **ubuntu 14.04** de 32 bits , puedes programa de virtualizacion como VirtualBox o VMware.
@@ -38,6 +39,7 @@ Linux ubuntu 4.4.0-142-generic #168~14.04.1-Ubuntu SMP Sat Jan 19 11:28:33 UTC 2
 Para el proceso de debugging (depuración del programa) estaré utilizando gdb con un plugin adicional para darle una salida mas colorida y elegante.
 
 Para añadir [peda](https://github.com/longld/peda) solo tienes que seguir las instrucciones que se especifican en el propio proyecto.
+
 <p align="center">
 <img src="/assets/images/boflinux/2.png" width="50%">
 </p>
