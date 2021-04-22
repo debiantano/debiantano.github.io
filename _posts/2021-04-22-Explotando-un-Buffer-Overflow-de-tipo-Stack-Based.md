@@ -26,7 +26,7 @@ tags:
 ## Antecedentes:
 Antes de comenzar, debo decir que todo el procedimiento del laboratorio se llevará a cabo en una maquina virtual  especificamente en un sistema **ubuntu 14.04** de 32 bits , puedes programa de virtualizacion como VirtualBox o VMware.
 <p align="center">
-<img src="/assets/images/boflinux/1.png" width="100%">
+<img src="/assets/images/boflinux/1.png" width="750%">
 </p>
 
 Puedes comprobar con la siguiente sentencia para ver la informacion del sistema
@@ -41,7 +41,7 @@ Para el proceso de debugging (depuración del programa) estaré utilizando gdb c
 Para añadir [peda](https://github.com/longld/peda) solo tienes que seguir las instrucciones que se especifican en el propio proyecto.
 
 <p align="center">
-<img src="/assets/images/boflinux/2.png" width="100%">
+<img src="/assets/images/boflinux/2.png" width="80%">
 </p>
 
 
@@ -66,7 +66,7 @@ void main(int argc, char **argv){
 gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 buffer.c -o buffer
 ```
 <p align="center">
-<img src="/assets/images/boflinux/3.png" width="100%">
+<img src="/assets/images/boflinux/3.png" width="80%">
 </p>
 
 
