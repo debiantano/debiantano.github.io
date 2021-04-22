@@ -18,9 +18,15 @@ tags:
 - [Creacion del script en C vulnerable](#creando-script-en-c)
 - [Calculando el offset](calculando-el-offset)
 
+<p align="center">
+<img src="/assets/images/boflinux/portada.png" width="50%">
+</p>
+
 ## Antecedentes:
 Antes de comenzar, debo decir que todo el procedimiento del laboratorio se llevará a cabo en una maquina virtual  especificamente en un sistema **ubuntu 14.04** de 32 bits , puedes programa de virtualizacion como VirtualBox o VMware.
-![virtualbox](../1.png)
+<p align="center">
+<img src="/assets/images/boflinux/1.png" width="50%">
+</p>
 
 Puedes comprobar con la siguiente sentencia para ver la informacion del sistema
 ```bash
@@ -32,7 +38,9 @@ Linux ubuntu 4.4.0-142-generic #168~14.04.1-Ubuntu SMP Sat Jan 19 11:28:33 UTC 2
 Para el proceso de debugging (depuración del programa) estaré utilizando gdb con un plugin adicional para darle una salida mas colorida y elegante.
 
 Para añadir [peda](https://github.com/longld/peda) solo tienes que seguir las instrucciones que se especifican en el propio proyecto.
-![peda](2.png)
+<p align="center">
+<img src="/assets/images/boflinux/2.png" width="50%">
+</p>
 
 
 ## Creando script en C
@@ -55,13 +63,9 @@ void main(int argc, char **argv){
 ```bash
 gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 buffer.c -o buffer
 ```
-| argumento                    |                descripción                  |
-|:-----------------------------|:--------------------------------------------|
-| -z execstack                 | deshabilitar la pila de no ejecución        | 
-| -g -fno-stack-protector      | desactiva la protección de la pila          |
-| -mpreferred-stack-boundary=2 | desmontar fácilmente lo que está sucediendo |
-| buffer                       | nombre de la salida del ejecutable          |
-
+<p align="center">
+<img src="/assets/images/boflinux/3.png" width="50%">
+</p>
 
 
 
@@ -196,6 +200,8 @@ References to pattern buffer found at:
 
 ```
 
+---
+
 Ver los valores que hay en la pila
 Si queremos ver los 100 últimos registros de la pila y 8 bytes antes
 ```bash
@@ -226,6 +232,8 @@ gdb-peda$ x/100wx $esp-8
 0xbffff19c:     0xbffffe0b      0xbffffe25      0xbffffe37      0xbffffe73
 0xbffff1ac:     0xbffffec2      0xbffffee2      0xbffffef7      0xbfffff01
 ```
+
+---
 
 Finalmente ha sido posible ejecutarse comandos explotando un buffer overflow en un sistema linux.
 ```bash
