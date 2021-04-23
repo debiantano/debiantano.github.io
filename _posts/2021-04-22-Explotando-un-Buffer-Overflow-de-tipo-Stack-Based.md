@@ -18,15 +18,15 @@ tags:
 <img src="/assets/images/boflinux/portada.png" width="50%">
 </p>
 
-- [Antecedentes](#Antecedente)
-- [Creacion del script en C vulnerable](#creando-script-en-c)
-- [Calculando el offset](calculando-el-offset)
-
+- [Antecedentes](#Antecedentes)
+- [Creando script en C](#creación-del-script-vulnerable)
+- [Calculando el offset](#calculando-el-offset)
+- [Ejecución de comandos](#ejecución-de-comandos)
 
 ## Antecedentes:
 Antes de comenzar, debo decir que todo el procedimiento del laboratorio se llevará a cabo en una maquina virtual  especificamente en un sistema **ubuntu 14.04** de 32 bits , puedes programa de virtualizacion como VirtualBox o VMware.
 <p align="center">
-<img src="/assets/images/boflinux/1.png" width="750%">
+<img src="/assets/images/boflinux/1.png" width="75%">
 </p>
 
 Puedes comprobar con la siguiente sentencia para ver la informacion del sistema
@@ -35,8 +35,9 @@ Puedes comprobar con la siguiente sentencia para ver la informacion del sistema
 Linux ubuntu 4.4.0-142-generic #168~14.04.1-Ubuntu SMP Sat Jan 19 11:28:33 UTC 2019 i686 i686 i686 GNU/Linux
 ```
 ---
-**Instalacion de peda**
-Para el proceso de debugging (depuración del programa) estaré utilizando gdb con un plugin adicional para darle una salida mas colorida y elegante.
+**Instalacion de peda**  
+
+Para el proceso de debugging (depuración del programa) estaré utilizando **gdb** con un plugin adicional para darle una salida mas colorida y elegante.
 
 Para añadir [peda](https://github.com/longld/peda) solo tienes que seguir las instrucciones que se especifican en el propio proyecto.
 
@@ -45,7 +46,7 @@ Para añadir [peda](https://github.com/longld/peda) solo tienes que seguir las i
 </p>
 
 
-## Creando script en C
+## Creación de script vulnerable:
 El siguiente codigo es un simple script escrito en C , donde basicamente la parte vulnerable estaría concentrado en el método **strcmp**.
 ```bash
 #include<stdio.h>
@@ -71,8 +72,7 @@ gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 buffer.c -
 
 
 
-Puedo ver si el binario cuenta con protecciones.
-
+Para ver si el binario cuenta con protecciones, haremos uso del script [checksec](https://gist.github.com/ocean1/5571b9d1f8d739f92363) y otras caracteristicas del ejecutable.  
 Podemos ver que el DEP está deshabilitado
 ```bash
 checksec --file buffer
@@ -80,8 +80,8 @@ RELRO           STACK CANARY      NX            PIE             RPATH      RUNPA
 Partial RELRO   No canary found   NX disabled   No PIE          No RPATH   No RUNPATH   buffer
 ```
 
-**ldd** es una utilidad de linea de comandos de linux que se utiliza para conocer las bibliotecas compartidas. 
 
+**ldd** es una utilidad de linea de comandos de linux que se utiliza para conocer las bibliotecas compartidas. 
 **ASLR desactivado**
 
 
@@ -131,6 +131,7 @@ Ejecutando el script el script con un parámetro superior al indicado en el prog
 Segmentation fault (core dumped)
 ```
 
+## Calculando el offset
 ### Memoria EIP sobreescrita
 Al enviar un argumento de 100 A's se puede apreciar como el depurador nos indica que EIP esta pauntando a la direción ```0x41414141```.
 
@@ -235,6 +236,7 @@ gdb-peda$ x/100wx $esp-8
 0xbffff1ac:     0xbffffec2      0xbffffee2      0xbffffef7      0xbfffff01
 ```
 
+## Ejecución de comandos
 ---
 
 Finalmente ha sido posible ejecutarse comandos explotando un buffer overflow en un sistema linux.

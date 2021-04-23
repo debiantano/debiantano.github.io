@@ -1,0 +1,96 @@
+{
+  "main": {
+    "id": "6a93fec50a6c5f7e",
+    "type": "split",
+    "children": [
+      {
+        "id": "30deb08203a8c6a8",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "2021-04-22-Explotando-un-Buffer-Overflow-de-tipo-Stack-Based.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7c66a085a79c4898",
+    "type": "split",
+    "children": [
+      {
+        "id": "442c675b83b1d337",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "be7a4df16de54628",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "e460966c301dfafe",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d93884e9685b6536",
+    "type": "split",
+    "children": [
+      {
+        "id": "dc99904520c5ef76",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6b1a9ea68e3f0250",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2021-04-22-Explotando-un-Buffer-Overflow-de-tipo-Stack-Based.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "30deb08203a8c6a8",
+  "lastOpenFiles": [
+    "2021-04-22-Explotando-un-Buffer-Overflow-de-tipo-Stack-Based.md",
+    "Untitled.md",
+    "ejecución-de-comandos.md",
+    "calculando-el-offset.md"
+  ]
+}
