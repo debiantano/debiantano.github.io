@@ -5,8 +5,8 @@ main:
   #  url: /year-archive/
   #- title: "Categorías"
   #  url: /categories/
-  - title: "Etiquetas"
-    url: /tags/
+  - title: "Categorias"
+    url: /categories/
   - title: "Sobre mí"
     url: /about/
   - title: "Buscador"
