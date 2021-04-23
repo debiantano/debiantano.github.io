@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  Expotando el Buffer Overflow de tipo stack Based
+title:  Explotando el Buffer Overflow de tipo stack Based
 excerpt: "En este post se explica los conceptos basicos en la explotación de un error basado en pila de la memoria con un depurador muy conocido como es gdb hasta conseguir hasta conseguir la ejecución de comandosa traves de un desbordamiento de buffer."
 date: 2021-04-22
 classes: wide
