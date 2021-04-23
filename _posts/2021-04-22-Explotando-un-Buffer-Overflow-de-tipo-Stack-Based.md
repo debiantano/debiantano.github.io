@@ -182,7 +182,7 @@ References to pattern buffer found at:
 ---
 
 Ver los valores que hay en la pila
-Si queremos ver los 100 últimos registros de la pila y 8 bytes antes
+Si queremos ver los 100 últimos registros de la pila y 8 bytes antes.
 ```bash
 gdb-peda$ x/100wx $esp-8
 0xbffff02c:     0x41414141      0x42424242      0x43434343      0x43434343
