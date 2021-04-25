@@ -45,6 +45,12 @@ Para este caso lo que haremos es captar toda la informacion de los Puntos de Acc
 <p align="center">
 <img src="/assets/images/wpa/2.png">
 </p>
+  
+<p align="center">
+<img src="/assets/images/wpa/5.png width="75%">
+</p>
+
+---
 
 ## Filtro con airodump-ng
 ```
