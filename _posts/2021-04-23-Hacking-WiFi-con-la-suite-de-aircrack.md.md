@@ -24,6 +24,9 @@ tags:
 - [ cracking del handshake](#cracking-del-handshake)
 
 ## Interfaz en modo monitor
+El modo monitor resulta muy útil para ver qué paquetes se encuentran en nuestro entorno. Su utilidad se basa en que todos los paquetes que pasan tienen la información de a qué protocolo pertenece y las opciones de reensamblado. Incluso, si están cifrados, tienen la información en claro, es decir, que es posible saber qué contiene el paquete.  
+
+Para activar este modo en nuestra tarjeta se hará so de la utilidad **airmon-ng**.
 
 ```
 > airmon-ng start wlan0
@@ -33,12 +36,14 @@ tags:
 </p>
 
 ## Captura del tráfico con airodump-ng
+Para la captura de paquetes wireless 802.11 se hará uso de **airodump-ng** y es necesario para ir acumulando vectores de inicialización IVs (en el caso del protocolo WEP).
+Para este caso lo que haremos es captar toda la informacion de los Puntos de Acceso que se encuentren a nuestro alcance.
 
 ```
 > airodump-ng <network>
 ```
 <p align="center">
-<img src="/assets/images/wpa/2.png" width="90%">
+<img src="/assets/images/wpa/2.png">
 </p>
 
 ## Filtro con airodump-ng
@@ -59,7 +64,7 @@ El objetivo es conseguir que un cliente se conecte nuevamente a la red para que 
 ## Cracking del handshake
 Para la fase de crackeo lo más aconsejable en entornos reales es crear nuestros propios diccionarios en base a la información del Punto de Acceso.  
 OJO, este ataque siempre tiene que ser con consentimiento del objetivo o cliente, ya que si no estaríamos incurriendo en un delito.
-Herramientaas como cupp, crunch, johnTheRipper son las mas usadas para estos casos.
+Herramientaas como cupp, crunch, johnTheRipper son las mas usadas para la cración de diccionarios.
 <p align="center">
 <img src="/assets/images/wpa/8.png" width="90%">
 </p>
