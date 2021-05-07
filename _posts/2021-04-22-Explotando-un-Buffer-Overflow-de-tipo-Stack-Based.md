@@ -5,7 +5,7 @@ excerpt: "En este post se explica los conceptos basicos en la explotación de un
 date: 2021-04-22
 classes: wide
 header:
-    teaser: /assets/images/boflinux/portada.png
+    teaser: /assets/images/win32/portada.png
     teaser_home_page: true
 categories:
     - BoF
