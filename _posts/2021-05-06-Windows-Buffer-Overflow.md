@@ -11,7 +11,7 @@ categories:
     - BoF
 tags:
     - windows
-    - python
+    - BufferOverflow
 ---
 
 <p align="center">
@@ -38,7 +38,7 @@ tags:
 ## Fuzzing
 En cualquier desbordamiento de búfer el primer paso es realizar fuzzing a la aplicaión vulnerable. El fuzzing nos permite enviar bytes de datos a un programa vulnerable (en nuestro caso, Brainpan.exe) en iteraciones crecientes, con la esperanza de desbordar el espacio del búfer y sobrescribir el EIP.
 Para ello se elaboró un script hecho en python desde nuestra maquina atacante(kali).
-```
+```python
 #!/usr/bin/python
 
 import socket
@@ -117,7 +117,7 @@ Como puede ver, se encontró una coincidencia exacta en **524** bytes. Esta es u
 
 ## Sobrescritura del EIP
 Ahora que sabemos que el EIP es posterior a 524 bytes, podemos modificar nuestro código ligeramente para confirmar nuestro control. Aquí está mi código actualizado:
-```
+```python
 import socket
 import sys
 from time import sleep
@@ -188,7 +188,7 @@ Nuestro equivalente código de operación JMP ESP es **FFE4**. Ahora, podemos us
 
 Lo que acabamos de generar es una lista de direcciones que potencialmente podemos usar como nuestro puntero. Las direcciones se encuentran en el lado izquierdo, en blanco. Voy a seleccionar la primera dirección, **311712F3**, y agregaré al código Python.  
 El script deberia verse asi.
-```
+```python
 import socket
 import sys
 from time import sleep
@@ -225,7 +225,7 @@ Ahora, podemos juntar toda la información que hemos reunido para generar shellc
 </p>
 
 Como puede ver, generamos 351 bytes de shellcode. Necesitamos copiar y pegar este código de shell en nuestro script de Python. Así es como se ve el exploit final.
-```
+```python
 import socket
 import sys
 from time import sleep
