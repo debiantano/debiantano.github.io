@@ -5,7 +5,7 @@ excerpt: "Explotando un programa conocido de la plataforma de VulnHub basado en 
 date: 2021-05-06
 classes: wide
 header:
-    teaser: /assets/images/wpa/portada.png
+    teaser: /assets/images/win32/portada.png
     teaser_home_page: true
 categories:
     - BoF
@@ -15,7 +15,7 @@ tags:
 ---
 
 <p align="center">
-<img src="/assets/images/wpa/portada.png" width="80%">
+<img src="/assets/images/wpa/portada.png" width="90%">
 </p>
 
 - [Herramientas Usadas](#herramientas-usadas)
