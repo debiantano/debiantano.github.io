@@ -1,23 +1,31 @@
 ---
 layout: single
-title:  Hacking WiFi con la suite de aircrack-ng
-excerpt: "Hackeando una red wifi con el método convencional haciendo uso de las herramientas que posee la suite de aircrack"
-date: 2021-04-23
+title:  Windows Buffer Overflow
+excerpt: "Explotando un programa conocido de la plataforma de VulnHub basado en un error de desbordamiento de pila en una maquina Windows XP de 32 bits"
+date: 2021-05-06
 classes: wide
 header:
     teaser: /assets/images/wpa/portada.png
     teaser_home_page: true
 categories:
-    - wifi
+    - BoF
 tags:
-    - wifi
+    - windows
+    - python
 ---
 
 <p align="center">
 <img src="/assets/images/wpa/portada.png" width="80%">
 </p>
 
-- [Interfaz en modo monitor](#interfaz-en-modo-monitor)
+- [Herramientas Usadas](#herramientas-usadas)
+- [Fuzzing](#fuzzing)
+- [Enocontrando el offset](#encontrando-el-offset)
+- [Sobreescritura del EIP](#sobreescritura-del-eip)
+- [Encontrar badchars](#encontrar-badchars)
+- [Buscando el modulo adecuado]
+- [Generar el shellcode](#generar-el-shellcode)
+- [Obteniendo shell](#obteniendo-shell)
 
 ## Herramientas Usadas
 - Maquina virtual Windows XP
@@ -159,7 +167,7 @@ Entonces, volvamos a cerrar y volver a abrir Brainpan e Immunity Debugger. Una v
 
 ----
 
-## Encontrando el modulo adecuado
+## Buscando el modulo adecuado
 Ahora necesitamos encontrar alguna parte del programa que no tenga ningún tipo de protección de memoria. Las protecciones de la memoria, como DEP, ASLR y SafeSEH, pueden causar dolores de cabeza.
 Afortunadamente para nosotros nuevamente, Brainpan tiene un módulo que se ajusta a nuestros criterios. Para verlo por sí mismo, vuelva a abrir Brainpan e Immunity Debugger y luego escriba ```! Mona modules``` en la barra de búsqueda inferior de Immunity. Debería ver algunas opciones potenciales que se muestran.
 <p align="center">
@@ -265,6 +273,7 @@ except:
   sys.exit()
 ```
 
+## Obteniendo shell
 Entonces, he creado una variable llamada "exploit" y he colocado el shellcode malicioso dentro de ella. Puede notar que también he agregado **40 "\x90"** a la variable shellcode. Ésta es una práctica estándar. El byte x90 también se conoce como NOP, o sin operación. Literalmente no hace nada. Sin embargo, al desarrollar exploits, podemos usarlo como relleno. Hay casos en los que nuestro código de explotación puede interferir con nuestra dirección de retorno y no ejecutarse correctamente. Para evitar esta interferencia, podemos agregar algo de relleno entre los dos elementos.
 Ahora, configure un oyente de netcat en el puerto designado (4444 en mi ejemplo). Una vez que tenga netcat en ejecución, inicie Brainpan y ejecute su código de explotación. Si ha realizado todos los pasos correctamente, debería obtener acceso al sistema.  
 <p align="center">
