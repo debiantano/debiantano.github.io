@@ -23,7 +23,7 @@ tags:
 - [Enocontrando el offset](#encontrando-el-offset)
 - [Sobreescritura del EIP](#sobreescritura-del-eip)
 - [Encontrar badchars](#encontrar-badchars)
-- [Buscando el modulo adecuado]
+- [Buscando el modulo adecuado](#buscando-el-modulo-adecuado)
 - [Generar el shellcode](#generar-el-shellcode)
 - [Obteniendo shell](#obteniendo-shell)
 
