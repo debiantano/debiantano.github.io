@@ -15,7 +15,7 @@ tags:
 ---
 
 <p align="center">
-<img src="/assets/images/win32/portada.png" width="90%">
+<img src="/assets/images/win32/portada.png">
 </p>
 
 - [Herramientas Usadas](#herramientas-usadas)
