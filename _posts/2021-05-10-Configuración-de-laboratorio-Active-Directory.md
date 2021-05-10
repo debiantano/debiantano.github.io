@@ -5,7 +5,7 @@ excerpt: "En este artículo, aprenderemos cómo montar un laboratorio de Active 
 date: 2021-05-10
 classes: wide
 header:
-    teaser: /assets/images/AD/portada.png
+    teaser: /assets/images/adw/portada.png
     teaser_home_page: true
 categories:
     - ActiveDirectory
@@ -14,6 +14,9 @@ tags:
     - AD
 ---
 
+<p align="center">
+<img src="/assets/images/adw/portada.png">
+</p>
 
 - [requistos del laboratorio](requisitos-del-laboratorio)
 
