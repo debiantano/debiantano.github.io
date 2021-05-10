@@ -16,7 +16,7 @@ tags:
 
 
 <p align="center">
-<img src="/assets/images/shellshock/portada.png">
+<img src="/assets/images/shellshock/13.png">
 </p>
 
 - [Requisitos del laboratorio](#requisitos-del-laboratorio)
