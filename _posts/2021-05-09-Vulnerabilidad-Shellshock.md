@@ -5,7 +5,7 @@ excerpt: "En este post mostraré como crear un pequeño laboratorio a traves de 
 date: 2021-05-09
 classes: wide
 header:
-    teaser: /assets/images/shellshock/portada.png
+    teaser: /assets/images/shellshock/13.png
     teaser_home_page: true
 categories:
     - vulnerability
