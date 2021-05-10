@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  Configuracion de laboratorio Active Directory
-excerpt: "En este artículo, aprenderemos cómo montar un laboratorio de Active Directory para pruebas de penetración de manera local. Esto se realizará con el fin de que en proximos articulos se presentaran distintos tipos de ataques que se presentan en entornos empresariales.
+excerpt: "En este artículo, aprenderemos cómo montar un laboratorio de Active Directory para pruebas de penetración de manera local. Esto se realizará con el fin de que en proximos articulos se presentaran distintos tipos de ataques que se presentan en entornos empresariales."
 date: 2021-05-10
 classes: wide
 header:
@@ -13,6 +13,7 @@ tags:
     - windows
     - AD
 ---
+
 
 - [requistos del laboratorio](requisitos-del-laboratorio)
 
