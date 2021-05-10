@@ -29,33 +29,33 @@ tags:
 
 Comenzamos instalando la ISO correspondiente al DC Windows Server 2016
 <p align="center">
-<img src="/assets/images/adw/1.png">
+<img src="/assets/images/adw/1.PNG">
 </p>
   
 Aquí personalizará su sistema Windows proporcionándole su nombre de usuario y la contraseña que desea establecer. Luego haga clic en Siguiente para continuar.
 <p align="center">
-<img src="/assets/images/adw/2.png">
+<img src="/assets/images/adw/2.PNG">
 </p>
 
 Nos dirigimos a la configuración de la máquina virtual y haremos clic en **Floppy**, Lo que haremos es eliminar esta caracteristica ya que si no lo hacemos puede generarnos un error en la instalación.
 <p align="center">
-<img src="/assets/images/adw/3.png">
+<img src="/assets/images/adw/3.PNG">
 </p>
 
 Ahora seleccionará el sistema operativo para instalar entre las cuatro opciones que se indican a continuación. Aquí usamos **Standard Evaluation** con la GUI para tener una mejor interfaz de usuario.
 <p align="center">
-<img src="/assets/images/adw/5.png">
+<img src="/assets/images/adw/5.PNG">
 </p>
 
 El sistema operativo debe comenzar a instalarse (esto puede tardarunos minutos).
 <p align="center">
-<img src="/assets/images/adw/6.png">
+<img src="/assets/images/adw/6.PNG">
 </p>
 
 Y, en la opción de configuración personalizada, ingrese la contraseña que desea poner para la cuenta de administrador predeterminada.
 En mi caso la contraseña que he puesto es **P@$$w0rd!**
 <p align="center">
-<img src="/assets/images/adw/7.png">
+<img src="/assets/images/adw/7.PNG">
 </p>
 
 
