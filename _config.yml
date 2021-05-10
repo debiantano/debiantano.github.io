@@ -103,7 +103,7 @@ analytics:
 author:
   name             : "debiantano"
   avatar           : "/assets/images/profilepic.jpg"
-  bio              : "IT degree student / Interested in cybersecurity / Pentester wannabe"
+  bio              : "CTF hack player / Interested in cybersecurity / wireless hacking"
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        :
