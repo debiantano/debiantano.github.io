@@ -8,7 +8,7 @@ header:
     teaser: /assets/images/shellshock/portada.PNG
     teaser_home_page: true
 categories:
-    - BoF
+    - vulnerability
 tags:
     - linux
     - docker
