@@ -18,7 +18,7 @@ tags:
 <img src="/assets/images/adw/portada.png">
 </p>
 
-- [requistos del laboratorio](requisitos-del-laboratorio)
+- [requistos del laboratorio](#requisitos-del-laboratorio)
 
 ## Requisitos del laboratorio 
 - Maquina virtual Parrot OS
