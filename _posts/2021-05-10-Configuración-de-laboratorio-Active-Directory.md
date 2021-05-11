@@ -31,7 +31,17 @@ Comenzamos instalando la ISO correspondiente al DC Windows Server 2016
 <p align="center">
 <img src="/assets/images/adw/1.PNG">
 </p>
-  
+
+
+| Parámetro | Descripción   |
+| ----------|:------------- |
+| -p        | Escaneo de los puertos obtenidos                       |
+| -sC       | Muestra todos los scripts relacionados con el servicio |
+| -sV       | Nos permite ver la versión del servicio                |
+| -oN       | Guarda el output en un archivo                         |
+
+
+
 Aquí personalizará su sistema Windows proporcionándole su nombre de usuario y la contraseña que desea establecer. Luego haga clic en Siguiente para continuar.
 <p align="center">
 <img src="/assets/images/adw/2.PNG">
