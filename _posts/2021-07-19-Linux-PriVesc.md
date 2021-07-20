@@ -46,6 +46,8 @@ En muchos casos, la escalada de privilegios puede no depender simplemente de una
 [- LinuxPrivChecker](https://github.com/linted/linuxprivchecker "LinuxPrivChecker")  
 
 --------
+--------
+
 
 ## Exploits de kernel
 Verificar la version del kernel
