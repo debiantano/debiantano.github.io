@@ -56,9 +56,9 @@ $ cat /proc/version
 Linux version 5.7.0-2parrot2-amd64 (team@parrotsec.org) (gcc version 9.3.0 (Debian 9.3.0-15), GNU ld (GNU Binutils for Debian) 2.34.90.20200706) #1 SMP Debian 5.7.10-1parrot2 (2020-07-31)
 ```
 #### Escalada de Privilegios:
-• [LinuxPrivChecker](https://github.com/linted/linuxprivchecker)
-• Searchsploit "linux kernel"
-• [LinuxExploitSuggester2](https://github.com/jondonas/linux-exploit-suggester-2)
+• [LinuxPrivChecker](https://github.com/linted/linuxprivchecker)  
+• Searchsploit "linux kernel"  
+• [LinuxExploitSuggester2](https://github.com/jondonas/linux-exploit-suggester-2)  
 
 
 
