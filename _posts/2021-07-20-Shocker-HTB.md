@@ -1,7 +1,9 @@
 ---
 layout: single
 title:  Shocker
-excerpt: ""
+excerpt: "
+
+"
 date: 2021-07-20
 classes: wide
 header:
