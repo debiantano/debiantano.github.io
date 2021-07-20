@@ -25,6 +25,19 @@ Los usuarios se identifican mediante un ID de usuario entero (UID).
 La cuenta de usuario "root" es un tipo especial de cuenta en Linux, tiene un UID de 0 y el sistema otorga a este usuario acceso a cada archivo.  
 
 ### Grupos
-Los grupos se configuran en el archivo /etc/group.  
-Los usuarios tienen un grupo principal y pueden tener varios grupos secundarios (o complementarios).
-De forma predeterminada, el grupo principal de un usuario tiene el mismo nombre como su cuenta de usuario
+Los grupos se configuran en el archivo /etc/group.    
+Los usuarios tienen un grupo principal y pueden tener varios grupos secundarios (o complementarios).  
+De forma predeterminada, el grupo principal de un usuario tiene el mismo nombre como su cuenta de usuario.  
+
+### Archivos y directorios
+Todos los archivos y directorios tienen un solo propietario y un grupo.    
+Los permisos se definen en términos de lectura, escritura y ejecución.  
+Hay tres conjuntos de permisos, uno para el propietario, otro para el grupo, y uno para todos los "otros" usuarios.  
+Solo el propietario puede cambiar los permisos.
+
+### Permisos de archivos
+• Leer: se puede leer el contenido del archivo.  
+• Escritura: el contenido del archivo se puede modificar.  
+• Ejecutar: el archivo se puede ejecutar (es decir, ejecutar como algún tipo de proceso).  
+
+
