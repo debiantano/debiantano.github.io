@@ -41,9 +41,9 @@ En muchos casos, la escalada de privilegios puede no depender simplemente de una
 • Ejecutar: el archivo se puede ejecutar (es decir, ejecutar como algún tipo de proceso).  
 
 ### Herramientas que automatizan la enumeracion
-[- LinPeas](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS "LinPeas")
-[- LinEnum](https://github.com/rebootuser/LinEnum "LinEnum")
-[- LinuxPrivChecker](https://github.com/linted/linuxprivchecker "LinuxPrivChecker")
+[- LinPeas](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS "LinPeas")  
+[- LinEnum](https://github.com/rebootuser/LinEnum "LinEnum")  
+[- LinuxPrivChecker](https://github.com/linted/linuxprivchecker "LinuxPrivChecker")  
 
 --------
 
