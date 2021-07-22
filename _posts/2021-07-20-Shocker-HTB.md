@@ -124,7 +124,7 @@ server-status           [Status: 403, Size: 299, Words: 22, Lines: 12]
 ```
 
 <p align="center">
-<img src="/assets/images/whtb/shocker/2.PNG">
+<img src="/assets/images/htb/shocker/2.PNG">
 </p>
 
 Fuerza bruta al sistema web enumerando archivos con extension sh, py,pl,cgi.
