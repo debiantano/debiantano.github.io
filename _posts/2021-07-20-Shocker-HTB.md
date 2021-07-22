@@ -5,7 +5,7 @@ excerpt: "Maquina Shocker de la Plataforma HackTheBox, posee una dificultad faci
 date: 2021-07-20
 classes: wide
 header:
-    teaser: /assets/images/que-es-un-socket-y-como-funciona/portada.png
+    teaser: ![shocker](https://miro.medium.com/max/529/1*1RZc7qvvqBAYnSCy6-F77w.png)
     teaser_home_page: true
 categories:
     - WriteUp
