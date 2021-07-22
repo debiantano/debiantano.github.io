@@ -1,15 +1,20 @@
 ---
 layout: single
 title:  Shocker
-excerpt: "Maquina Shocker de la Plataforma HackTheBox de sistema operativo Linux , posee una dificultad facil posee una vulnerabilidad bastante conocida que en su momento afectó a millones de servidores. públicos"
+excerpt: "Maquina Shocker de la Plataforma HackTheBox, posee una dificultad facil con una vulnerabilidad bastante conocida que la época en que fue descubierto afectó a millones de servidores. públicos"
 date: 2021-07-20
 classes: wide
+header:
+    teaser: /assets/images/que-es-un-socket-y-como-funciona/portada.png
+    teaser_home_page: true
 categories:
     - WriteUp
 tags:
     - Linux
     - HTB
 ---
+
+
 
 ```bash
 $ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://10.10.10.56/FUZZ -c -t 200
