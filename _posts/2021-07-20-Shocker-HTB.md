@@ -2,9 +2,9 @@
 layout: single
 title:  Shocker
 excerpt: "
-Plataforma : HackTheBox  
-Sistema Operativo : Linux  
-Dificultad . Fácil  
+Plataforma : HackTheBox    
+Sistema Operativo : Linux     
+Dificultad . Fácil     
 "
 date: 2021-07-20
 classes: wide
