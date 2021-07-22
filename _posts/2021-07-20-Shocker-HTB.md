@@ -15,6 +15,35 @@ tags:
 ---
 
 
+# Sistema Vulnerable: 10.10.10.56
+## Explicacaión de la vulnerabilidad.
+Shellshock apareció por primera vez en septiembre de 2014. Hubo informes de ataques a las pocas horas de la divulgación inicial de la vulnerabilidad, y en los días siguientes, hubo millones de ataques y sondeos provenientes de botnets.  
+Bash es un shell o intérprete que permite que los comandos se ejecuten en un sistema, generalmente a través de una ventana de texto. Por lo general, es el shell predeterminado en los sistemas Unix, y como tal, se puede encontrar en Linux, macOS y otros varios sabores de Unix. Esta es la razón por la que Shellshock es tan grave: más de la mitad de los servidores web en Internet ejecutan Unix, sin mencionar una gran cantidad de dispositivos IoT e incluso algunos enrutadores/módems.  
+
+
+Esencialmente, Shellshock funciona al permitir que un atacante agregue comandos a las definiciones de funciones en los valores de las variables de entorno. Esto se clasificaría como un tipo de ataque de inyección de código, y dado que Bash procesará estos comandos después de la definición de la función, se puede ejecutar casi cualquier código arbitrario.  
+Shellshock es en realidad una familia completa de vulnerabilidades que consiste en múltiples vectores de explotación.  
+
+[https://securityhacklabs.net/articulo/seguridad-web-explotando-shellshock-en-un-servidor-web-usando-metasploit](https://securityhacklabs.net/articulo/seguridad-web-explotando-shellshock-en-un-servidor-web-usando-metasploit)
+
+
+## Vulnerabilidad de escalamiento de privilegios:
+
+## Corrección de la vulnerabilidad:
+
+## Gravedad : Crítica:
+
+## Prueba de concepto:
+
+### Enumeración:
+
+### Punto de apoyo:
+
+### Obteniendo shell inversa:
+
+### Obteniendo sesión de usuario:
+
+### Escalada de privilegios:
 
 ```bash
 $ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://10.10.10.56/FUZZ -c -t 200
