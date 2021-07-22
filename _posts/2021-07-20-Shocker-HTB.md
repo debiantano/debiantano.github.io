@@ -1,16 +1,7 @@
 ---
 layout: single
 title:  Shocker
-excerpt: "
-Plataforma : HackTheBox    
-Sistema Operativo : Linux     
-Dificultad : Fácil     
-"
-date: 2021-07-20
 classes: wide
-header:
-    teaser: /assets/images/que-es-un-socket-y-como-funciona/portada.png
-    teaser_home_page: true
 categories:
     - WriteUp
 tags:
@@ -19,7 +10,7 @@ tags:
 ---
 
 ```bash
-   ~/boxes/HACKTHEBOX/shocker/temp2 ❯ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://10.10.10.56/FUZZ -c -t 200
+$ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://10.10.10.56/FUZZ -c -t 200
                                                                                                                           
         /'___\  /'___\           /'___\                                                                                   
        /\ \__/ /\ \__/  __  __  /\ \__/                                                                                   
