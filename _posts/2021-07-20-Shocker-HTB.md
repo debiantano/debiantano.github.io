@@ -1,6 +1,8 @@
 ---
 layout: single
 title:  Shocker
+excerpt: "Maquina Shocker de la Plataforma HackTheBox de sistema operativo Linux , posee una dificultad facil posee una vulnerabilidad bastante conocida que en su momento afectó a millones de servidores. públicos"
+date: 2021-07-20
 classes: wide
 categories:
     - WriteUp
