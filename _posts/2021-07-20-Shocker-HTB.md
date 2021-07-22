@@ -24,8 +24,8 @@ Bash es un shell o intérprete que permite que los comandos se ejecuten en un si
 Esencialmente, Shellshock funciona al permitir que un atacante agregue comandos a las definiciones de funciones en los valores de las variables de entorno. Esto se clasificaría como un tipo de ataque de inyección de código, y dado que Bash procesará estos comandos después de la definición de la función, se puede ejecutar casi cualquier código arbitrario.  
 Shellshock es en realidad una familia completa de vulnerabilidades que consiste en múltiples vectores de explotación.  
 
-[- https://securityhacklabs.net/articulo/seguridad-web-explotando-shellshock-en-un-servidor-web-usando-metasploit](https://securityhacklabs.net/articulo/seguridad-web-explotando-shellshock-en-un-servidor-web-usando-metasploit)
-[- https://en.wikipedia.org/wiki/Shellshock_(software_bug)](https://en.wikipedia.org/wiki/Shellshock_(software_bug))
+[- https://securityhacklabs.net/articulo/seguridad-web-explotando-shellshock-en-un-servidor-web-usando-metasploit](https://securityhacklabs.net/articulo/seguridad-web-explotando-shellshock-en-un-servidor-web-usando-metasploit)  
+[- https://en.wikipedia.org/wiki/Shellshock_(software_bug)](https://en.wikipedia.org/wiki/Shellshock_(software_bug))  
 
 
 ## Vulnerabilidad de escalamiento de privilegios:  
